@@ -18,7 +18,6 @@ class Server{
     fnMiddleware = ()=>{
 
 
-        console.log(appDir)
         const hbs = require('hbs')
 
         this.app.set('view engine','hbs')
