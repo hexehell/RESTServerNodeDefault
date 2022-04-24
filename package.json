@@ -1,19 +1,23 @@
 {
-  "name": "WebServerApp",
+  "name": "restserver",
   "version": "1.0.0",
-  "description": "",
+  "description": "clon de webserverapp para trabajar con peticiones rest",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node app.js"
+    "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "hexehell",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "hbs": "^4.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "C:/Users/mssql1/source/repos/CursoNode/RESTServer/../WebServerApp/"
+  }
 }
