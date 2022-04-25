@@ -11,19 +11,23 @@ class Server{
 
         this.fnMiddleware()
 
+        this.fnCargarRutas();
+
         this.fnRuteo()
+
+    }
+
+    fnCargarRutas(){
+
+        this.RutaSaludar= process.env.saludar;
 
     }
 
     fnMiddleware = ()=>{
 
+        this.app.use(express.json());
 
-        const hbs = require('hbs')
-
-        this.app.set('view engine','hbs')
-        hbs.registerPartials(appDir + '/views/partials')
-
-        this.app.use(express.static(appDir +  '/www'))
+        this.app.use(express.static('www'));
 
 
     }
@@ -31,53 +35,16 @@ class Server{
     fnRuteo = ()=>{
 
         
-
-        
-
-        this.app.get('/', function (req, res) {
-            //   res.send(res)
-            
-            
-                res.render('home',{
-                 
-                    titulo:'Curso Node',
-                    tituloIzq: 'WebServerApp',
-                    subTituloIzq: 'Express'
-                })
-            
-            })
-            
-        this.app.get('/generic', function (req, res) {
-                // res.send('pancholino jackelino')
-            
-                // res.sendFile(__dirname + '/www/generic.html')
-                res.render('generic',{
-                    
-                    titulo:'Curso Node',
-                    tituloIzq: 'WebServerApp',
-                    subTituloIzq: 'Express'
-                })
-            
-              })
-            
-        this.app.get('/elements', function (req, res) {
-                // res.send('pancholino jackelino')
-            
-                // res.sendFile(__dirname + '/www/elements.html')
-            
-                res.render('elements',{
-                    
-                    titulo:'Curso Node',
-                    tituloIzq: 'WebServerApp',
-                    subTituloIzq: 'Express'
-                })
-            
-              })
-              
-
+        this.app.use(this.RutaSaludar,require('../routes/Saludar'))       
+       
         this.app.get('*', function (req, res) {
-            res.sendFile(appDir + '/www/404.html')
-          })
+            res.status(404).json({
+                "msg":`NO NI MERGAS`,
+                "status":'err' 
+            })
+          }) ;
+
+       
         
 
     }
